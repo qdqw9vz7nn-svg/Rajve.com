@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rajve Shah - Product Leader</title>
+  <style>
+    :root {
+      --text-primary: #f5f5f7;
+      --text-secondary: #a1a1a6;
+      --text-tertiary: #86868b;
+      --bg-primary: #000000;
+      --bg-secondary: #111111;
+      --bg-elevated: #1c1c1e;
+      --border-color: #38383a;
+      --accent-blue: #2997ff;
+      --accent-blue-hover: #40a9ff;
+      --gradient-start: #2997ff;
+      --gradient-end: #af52de;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.47059;
+      font-weight: 400;
+      letter-spacing: -0.022em;
+    }
+    nav {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 32px); max-width: 980px; z-index: 100;
+      backdrop-filter: saturate(180%) blur(40px);
+      -webkit-backdrop-filter: saturate(180%) blur(40px);
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0.06) 100%);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .nav-content { max-width: 980px; margin: 0 auto; padding: 0 22px; height: 48px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-size: 21px; font-weight: 600; color: var(--text-primary); text-decoration: none; letter-spacing: -0.03em; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { font-size: 12px; color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
+    .nav-links a:hover { color: var(--text-primary); }
+    @media (max-width: 734px) { .nav-links { display: none; } }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 24px 80px; background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%); }
+    .hero-title { font-size: clamp(48px, 10vw, 96px); font-weight: 700; letter-spacing: -0.045em; line-height: 1.05; max-width: 900px; }
+    .hero-title .gradient { background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-intro { margin-top: 32px; font-size: clamp(24px, 4vw, 32px); font-weight: 500; color: var(--text-primary); }
+    .hero-intro .name-accent { font-style: italic; font-weight: 600; background: linear-gradient(90deg, var(--text-primary), var(--text-secondary)); -webkit-background-clip: text; background-clip: text; color: transparent; cursor: default; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: inline-block; }
+    .hero-intro .name-accent:hover { background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end)); -webkit-background-clip: text; background-clip: text; transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(41, 151, 255, 0.4)); }
+    .hero-role { display: inline-block; margin-top: 12px; font-size: 17px; font-weight: 500; color: var(--text-secondary); letter-spacing: 0.02em; }
+    .hero-subtitle { margin-top: 24px; font-size: clamp(21px, 3vw, 28px); font-weight: 400; color: var(--text-secondary); max-width: 680px; line-height: 1.38; }
+    .hero-name { display: inline-flex; align-items: center; gap: 12px; margin-top: 20px; padding: 12px 24px; background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0.06) 100%); border-radius: 980px; box-shadow: 0 4px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(20px); }
+    .hero-name:hover { box-shadow: 0 8px 32px rgba(41, 151, 255, 0.2), inset 0 1px 0 rgba(255,255,255,0.15); border-color: rgba(41, 151, 255, 0.3); transform: scale(1.03) translateY(-2px); }
+    .hero-name-text { font-size: 17px; font-weight: 600; color: var(--text-primary); }
+    .hero-name-phonetic { font-size: 14px; color: var(--text-secondary); }
+    .play-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--accent-blue); display: grid; place-items: center; }
+    .play-icon svg { width: 10px; height: 10px; fill: white; margin-left: 2px; }
+    .hero-cta { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: linear-gradient(135deg, rgba(41, 151, 255, 0.9) 0%, rgba(41, 151, 255, 0.7) 100%); color: white; font-size: 17px; font-weight: 500; border-radius: 980px; text-decoration: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 4px 20px rgba(41, 151, 255, 0.3), inset 0 1px 0 rgba(255,255,255,0.2); }
+    .btn-primary:hover { background: linear-gradient(135deg, rgba(64, 169, 255, 0.95) 0%, rgba(41, 151, 255, 0.85) 100%); transform: scale(1.03) translateY(-2px); box-shadow: 0 8px 32px rgba(41, 151, 255, 0.4), inset 0 1px 0 rgba(255,255,255,0.25); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 6px; padding: 12px 24px; color: var(--accent-blue); font-size: 17px; font-weight: 400; text-decoration: none; transition: all 0.3s ease; }
+    .btn-secondary:hover { text-decoration: underline; }
+    .btn-secondary svg { width: 14px; height: 14px; transition: transform 0.3s ease; }
+    .btn-secondary:hover svg { transform: translateX(3px); }
+    .hero-stats { display: flex; align-items: center; justify-content: center; gap: 24px; margin-top: 48px; padding: 20px 32px; background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.04) 100%); border-radius: 20px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); box-shadow: 0 4px 24px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.06); flex-wrap: wrap; position: relative; overflow: hidden; }
+    .hero-stats::before { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 20%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 80%, transparent 100%); transform: skewX(-20deg); animation: shimmer 4s ease-in-out infinite; animation-delay: 1s; pointer-events: none; }
+    .hero-stats::after { content: ''; position: absolute; top: 0; left: -100%; width: 30%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(41, 151, 255, 0.03) 30%, rgba(175, 82, 222, 0.05) 50%, rgba(41, 151, 255, 0.03) 70%, transparent 100%); transform: skewX(-20deg); animation: shimmer 4s ease-in-out infinite; animation-delay: 2.5s; pointer-events: none; }
+    @keyframes shimmer { 0% { left: -100%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 200%; opacity: 0; } }
+    @keyframes statPop { 0% { opacity: 0; transform: translateY(10px) scale(0.95); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+    .hero-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 16px; border-radius: 12px; animation: statPop 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: inherit; opacity: 0; }
+    .hero-stat-value { font-size: 24px; font-weight: 700; letter-spacing: -0.03em; background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-stat-label { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; }
+    .hero-stat-divider { width: 1px; height: 32px; background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%); animation: fadeInDivider 1s ease forwards; animation-delay: 0.9s; opacity: 0; }
+    @keyframes fadeInDivider { 0% { opacity: 0; height: 0; } 100% { opacity: 1; height: 32px; } }
+    @media (max-width: 734px) { .hero-stats { gap: 16px; padding: 16px 20px; } .hero-stat-value { font-size: 20px; } .hero-stat-divider { display: none; } .hero-stat { min-width: 80px; } }
+    .section { padding: 100px 24px; }
+    .section-alt { background: var(--bg-secondary); }
+    .section-content { max-width: 980px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-eyebrow { font-size: 14px; font-weight: 600; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .section-title { font-size: clamp(32px, 5vw, 56px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; }
+    .section-subtitle { margin-top: 16px; font-size: 21px; color: var(--text-secondary); max-width: 600px; margin-left: auto; margin-right: auto; }
+    .capabilities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    @media (max-width: 734px) { .capabilities-grid { grid-template-columns: 1fr; } }
+    .capability-card { background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.04) 100%); border-radius: 24px; padding: 40px; text-align: center; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); box-shadow: 0 4px 24px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.06); }
+    .capability-card:hover { transform: scale(1.02) translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15); }
+    .capability-icon { width: 56px; height: 56px; margin: 0 auto 20px; border-radius: 16px; display: grid; place-items: center; }
+    .capability-icon svg { width: 28px; height: 28px; stroke-width: 1.5; }
+    .capability-title { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .capability-desc { font-size: 17px; color: var(--text-secondary); line-height: 1.47; }
+    .experience-card { background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%); border-radius: 28px; padding: 48px; margin-bottom: 32px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 4px 32px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.05); }
+    @media (max-width: 734px) { .experience-card { padding: 32px 24px; } }
+    .experience-card:hover { box-shadow: 0 16px 56px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); }
+    .experience-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; flex-wrap: wrap; gap: 24px; }
+    .experience-company { font-size: 40px; font-weight: 700; letter-spacing: -0.03em; }
+    .experience-role { font-size: 17px; color: var(--text-secondary); margin-top: 4px; }
+    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    @media (max-width: 734px) { .work-grid { grid-template-columns: 1fr; } }
+    .work-item { padding: 28px; background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%); border-radius: 18px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid rgba(255,255,255,0.06); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04); }
+    .work-item:hover { transform: translateY(-4px); background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%); border-color: rgba(255,255,255,0.1); box-shadow: 0 12px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.06); }
+    .work-eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .work-title { font-size: 21px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .work-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px; }
+    .work-metrics { display: flex; gap: 32px; }
+    .metric { flex: 1; }
+    .metric-value { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .metric-label { font-size: 11px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 4px; }
+    .work-meta { margin-top: 12px; font-size: 12px; color: var(--text-tertiary); letter-spacing: 0.02em; }
+    .work-item-subtle { background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); border-color: rgba(255,255,255,0.04); }
+    .press-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 1068px) { .press-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 734px) { .press-grid { grid-template-columns: 1fr; } }
+    .press-card { background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%); border-radius: 20px; padding: 28px; text-decoration: none; color: inherit; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.06); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04); }
+    .press-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.1); }
+    .press-date { font-size: 12px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px; }
+    .press-title { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 6px; }
+    .press-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.5; flex-grow: 1; }
+    .press-link { display: inline-flex; align-items: center; gap: 4px; font-size: 14px; color: var(--accent-blue); margin-top: 16px; }
+    .press-link svg { width: 12px; height: 12px; transition: transform 0.2s ease; }
+    .press-card:hover .press-link svg { transform: translateX(3px); }
+    .education-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    @media (max-width: 734px) { .education-grid { grid-template-columns: 1fr; } }
+    .education-card { background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%); border-radius: 24px; padding: 40px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid rgba(255,255,255,0.06); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04); }
+    .education-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.1); }
+    .education-school { font-size: 12px; font-weight: 600; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .education-degree { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .education-detail { font-size: 17px; color: var(--text-secondary); margin-bottom: 20px; }
+    .education-logo { width: 64px; height: 64px; border-radius: 18px; background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); display: grid; place-items: center; font-size: 14px; font-weight: 700; color: white; letter-spacing: 0.5px; flex-shrink: 0; box-shadow: 0 8px 24px rgba(41, 151, 255, 0.25), inset 0 1px 0 rgba(255,255,255,0.2); }
+    footer { padding: 48px 24px; background: var(--bg-secondary); text-align: center; border-top: 1px solid var(--border-color); }
+    .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: 14px; color: var(--text-secondary); text-decoration: none; transition: color 0.2s ease; }
+    .footer-links a:hover { color: var(--text-primary); }
+    .footer-copyright { font-size: 12px; color: var(--text-tertiary); }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-in { animation: fadeInUp 0.8s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .delay-2 { animation-delay: 0.2s; opacity: 0; }
+    .delay-3 { animation-delay: 0.3s; opacity: 0; }
+    .delay-4 { animation-delay: 0.4s; opacity: 0; }
+  </style>
+</head>
+<body>
+  <nav><div class="nav-content"><a href="#" class="nav-logo">Rajve</a><div class="nav-links"><a href="#capabilities">Capabilities</a><a href="#work">Work</a><a href="#press">Press</a><a href="#education">Education</a><a href="mailto:contact@rajve.com">Contact</a></div></div></nav>
+  <section class="hero" id="top">
+    <h1 class="hero-title animate-in delay-1">Build. Ship.<br><span class="gradient">Scale.</span></h1>
+    <p class="hero-intro animate-in delay-2">Hi! I am <span class="name-accent">Rajve</span>.</p>
+    <p class="hero-role animate-in delay-2">Product Leader</p>
+    <button class="hero-name animate-in delay-3" onclick="speakName()"><div class="play-icon"><svg viewBox="0 0 12 12"><polygon points="3,1 11,6 3,11"/></svg></div><span class="hero-name-text">Rajve</span><span class="hero-name-phonetic">raaj-vee</span></button>
+    <p class="hero-subtitle animate-in delay-4">I build platform-led growth systems that increase retention and engagement, and scale cleanly.</p>
+    <div class="hero-cta animate-in delay-4"><a href="mailto:contact@rajve.com" class="btn-primary">Get in touch<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a href="https://www.linkedin.com/in/rajvemehhta/" class="btn-secondary" target="_blank">View LinkedIn<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+    <div class="hero-stats animate-in delay-4"><div class="hero-stat" style="animation-delay: 0.5s;"><span class="hero-stat-value">$2B+</span><span class="hero-stat-label">Impact</span></div><div class="hero-stat-divider"></div><div class="hero-stat" style="animation-delay: 0.6s;"><span class="hero-stat-value">0→MM</span><span class="hero-stat-label">Members Scaled</span></div><div class="hero-stat-divider"></div><div class="hero-stat" style="animation-delay: 0.7s;"><span class="hero-stat-value">0→1</span><span class="hero-stat-label">Platforms Built</span></div><div class="hero-stat-divider"></div><div class="hero-stat" style="animation-delay: 0.8s;"><span class="hero-stat-value">12+</span><span class="hero-stat-label">Years</span></div></div>
+  </section>
+  <section class="section" id="capabilities"><div class="section-content"><div class="section-header"><p class="section-eyebrow">Capabilities</p><h2 class="section-title">What I do best.</h2><p class="section-subtitle">Building systems that drive measurable business outcomes.</p></div><div class="capabilities-grid"><div class="capability-card"><div class="capability-icon" style="background: linear-gradient(135deg, #34c759, #30d158);"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><h3 class="capability-title">Growth</h3><p class="capability-desc">Funnels, experimentation, and personalization at scale.</p></div><div class="capability-card"><div class="capability-icon" style="background: linear-gradient(135deg, #007aff, #5ac8fa);"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg></div><h3 class="capability-title">Retention</h3><p class="capability-desc">Churn prevention, winback, and lifecycle automation.</p></div><div class="capability-card"><div class="capability-icon" style="background: linear-gradient(135deg, #af52de, #bf5af2);"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div><h3 class="capability-title">Engagement</h3><p class="capability-desc">Habit loops, value reinforcement, and relevance.</p></div><div class="capability-card"><div class="capability-icon" style="background: linear-gradient(135deg, #ff9500, #ffcc00);"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-linecap="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></div><h3 class="capability-title">Platforms</h3><p class="capability-desc">Reusable primitives with low marginal cost.</p></div></div></div></section>
+  <section class="section section-alt" id="work"><div class="section-content"><div class="section-header"><p class="section-eyebrow">Experience</p><h2 class="section-title">Where I've made impact.</h2></div><div class="experience-card"><div class="experience-header"><div><h3 class="experience-company">Walmart</h3><p class="experience-role">Director of Product Management · Walmart+</p></div></div><div class="work-grid"><div class="work-item"><p class="work-eyebrow" style="color: #af52de;">Membership Platform</p><h4 class="work-title">Cohort Discounted Tiers</h4><p class="work-desc">Reusable platform for Assist & Student: eligibility integrations, sign-up + switch with proration, annual reverification.</p><div class="work-metrics"><div class="metric"><div class="metric-value">4M+</div><div class="metric-label">Members added</div></div><div class="metric"><div class="metric-value">40%</div><div class="metric-label">Higher retention</div></div></div></div><div class="work-item"><p class="work-eyebrow" style="color: #007aff;">Payments Engine</p><h4 class="work-title">Recurring Payments Platform</h4><p class="work-desc">Core billing, renewal, and recovery engine with retries, dunning, and payment method management.</p><div class="work-metrics"><div class="metric"><div class="metric-value">95%</div><div class="metric-label">Payment success</div></div><div class="metric"><div class="metric-value">80%</div><div class="metric-label">Churn reduction</div></div></div></div><div class="work-item"><p class="work-eyebrow" style="color: #5ac8fa;">Retention System</p><h4 class="work-title">Intelligent Cancel Flow</h4><p class="work-desc">Personalized cancel journey with churn risk signals and dynamic value reinforcement.</p><div class="work-metrics"><div class="metric"><div class="metric-value">15%</div><div class="metric-label">Churn reduction</div></div><div class="metric"><div class="metric-value">500K+</div><div class="metric-label">Retained annually</div></div></div></div><div class="work-item"><p class="work-eyebrow" style="color: #ff9500;">Trust & Safety</p><h4 class="work-title">Membership Integrity</h4><p class="work-desc">Integrity platform with heuristics, AI/ML models, and human review to prevent abuse.</p><div class="work-metrics"><div class="metric"><div class="metric-value">65%</div><div class="metric-label">Abuse reduction</div></div><div class="metric"><div class="metric-value">35%</div><div class="metric-label">Fewer chargebacks</div></div></div></div><div class="work-item"><p class="work-eyebrow" style="color: #34c759;">Access Expansion</p><h4 class="work-title">SNAP EBT Online Payments</h4><p class="work-desc">Enabled SNAP EBT for Pickup & Delivery — accelerated nationwide rollout during COVID-19.</p><div class="work-metrics"><div class="metric"><div class="metric-value">First</div><div class="metric-label">Major retailer</div></div><div class="metric"><div class="metric-value">~37%</div><div class="metric-label">US grocery GMV</div></div></div></div><div class="work-item"><p class="work-eyebrow" style="color: #5856d6;">Leadership</p><h4 class="work-title">Building Teams</h4><p class="work-desc">Built high-performing PM org, influenced exec priorities, aligned cross-functional orgs.</p><div class="work-metrics"><div class="metric"><div class="metric-value">0→7</div><div class="metric-label">PMs developed</div></div><div class="metric"><div class="metric-value">50+</div><div class="metric-label">Partners</div></div></div></div></div></div><div class="experience-card"><div class="experience-header"><div><h3 class="experience-company">Prior Roles</h3><p class="experience-role">E-Commerce & Digital Product</p></div></div><div class="work-grid"><div class="work-item"><p class="work-eyebrow" style="color: #ff3b30;">Macy's Tech</p><h4 class="work-title">E-Commerce Manager</h4><p class="work-desc">Owned digital merchandising and site discovery for high-traffic programs. Led Beauty category strategy (>$500M) and a cross-functional team spanning Product, Engineering, and Marketing.</p><p class="work-meta">2.5 years · San Francisco</p></div><div class="work-item"><p class="work-eyebrow" style="color: #ff9500;">Charlotte Russe</p><h4 class="work-title">Associate Manager, Digital Product</h4><p class="work-desc">Drove site discovery and conversion through navigation, search, and category optimization. Owned A/B testing roadmap and digital merchandising execution.</p><p class="work-meta">1.3 years · San Francisco</p></div><div class="work-item work-item-subtle"><p class="work-eyebrow" style="color: #af52de;">Early Career</p><h4 class="work-title">Brand & Marketing</h4><p class="work-desc">Launched luxury brands (Paul Smith, Etro) in India at Genesis Luxury. Marketing and PR at Elle Magazine. Built foundations in brand strategy, campaign execution, and market entry.</p><p class="work-meta">India · Fashion & Luxury</p></div></div></div></div></section>
+  <section class="section" id="press"><div class="section-content"><div class="section-header"><p class="section-eyebrow">Press</p><h2 class="section-title">In the news.</h2></div><div class="press-grid"><a href="https://corporate.walmart.com/news/2020/09/01/walmart-introduces-walmart" class="press-card" target="_blank"><span class="press-date">Sep 2020</span><h3 class="press-title">Walmart Introduces Walmart+</h3><p class="press-desc">Launch of Walmart+ membership.</p><span class="press-link">Read more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span></a><a href="https://corporate.walmart.com/news/2020/04/13/customers-using-snap-benefits-have-more-ways-to-shop" class="press-card" target="_blank"><span class="press-date">Apr 2020</span><h3 class="press-title">Customers using SNAP benefits have more ways to shop</h3><p class="press-desc">Expanded access for customers using SNAP.</p><span class="press-link">Read more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span></a><a href="https://corporate.walmart.com/news/2022/07/06/walmart-and-inhome-combine-to-become-the-ultimate-membership" class="press-card" target="_blank"><span class="press-date">Jul 2022</span><h3 class="press-title">Walmart+ and InHome combine</h3><p class="press-desc">Membership packaging expansion.</p><span class="press-link">Read more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span></a><a href="https://corporate.walmart.com/news/2023/07/20/walmart-launches-walmart-assist-half-price-memberships-for-those-on-government-assistance" class="press-card" target="_blank"><span class="press-date">Jul 2023</span><h3 class="press-title">Walmart launches Walmart+ Assist (half price)</h3><p class="press-desc">Discounted membership for eligible customers.</p><span class="press-link">Read more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span></a><a href="https://corporate.walmart.com/news/2024/07/18/bigger-better-back-to-school-walmart-is-offering-thousands-of-products-under-10-to-kick-off-the-shopping-season-with-honors" class="press-card" target="_blank"><span class="press-date">Jul 2024</span><h3 class="press-title">Back to School: Walmart+ Student (half price)</h3><p class="press-desc">Student discounted membership offer.</p><span class="press-link">Read more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span></a><a href="https://corporate.walmart.com/news/2025/09/01/walmart-plus-celebrates-5th-anniversary-with-expanded-video-streaming-choices" class="press-card" target="_blank"><span class="press-date">Sep 2025</span><h3 class="press-title">Walmart+ 5th anniversary (streaming choice + Peacock)</h3><p class="press-desc">Expanded streaming benefit, including Peacock.</p><span class="press-link">Read more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span></a><a href="https://corporate.walmart.com/about/working-at-walmart" class="press-card" target="_blank"><span class="press-date">Walmart Corporate</span><h3 class="press-title">Associates get Walmart+ memberships</h3><p class="press-desc">Associate membership benefit.</p><span class="press-link">Read more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span></a></div></div></section>
+  <section class="section section-alt" id="education"><div class="section-content"><div class="section-header"><p class="section-eyebrow">Education</p><h2 class="section-title">Foundation.</h2></div><div class="education-grid"><div class="education-card"><div><p class="education-school">Savannah College of Art and Design</p><h3 class="education-degree">M.A., Luxury Brand Management</h3><p class="education-detail">4.0 GPA</p><a href="https://www.behance.net/rajve?locale=en_US" class="btn-secondary" target="_blank" style="padding: 0;">View Portfolio<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div><div class="education-logo">SCAD</div></div><div class="education-card"><div><p class="education-school">National Institute of Fashion Technology, India</p><h3 class="education-degree">Bachelor of Design</h3><p class="education-detail">Graduated top of class</p></div><div class="education-logo">NIFT</div></div></div></div></section>
+  <footer><div class="footer-links"><a href="mailto:contact@rajve.com">Email</a><a href="https://www.linkedin.com/in/rajvemehhta/" target="_blank">LinkedIn</a></div><p class="footer-copyright">© 2025 Rajve Shah. All rights reserved.</p></footer>
+  <script>
+    function speakName() { if (!window.speechSynthesis) return; window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance('raaj vee'); u.rate = 0.9; u.pitch = 1.0; window.speechSynthesis.speak(u); }
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.capability-card, .work-item, .press-card, .education-card').forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; observer.observe(el); });
+  </script>
+</body>
+</html>
