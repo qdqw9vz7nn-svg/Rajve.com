@@ -40,13 +40,77 @@
       border: 1px solid rgba(255,255,255,0.12); border-radius: 20px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
     }
-    .nav-content { max-width: 980px; margin: 0 auto; padding: 0 22px; height: 48px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-size: 21px; font-weight: 600; color: var(--text-primary); text-decoration: none; letter-spacing: -0.03em; }
+    .nav-content {
+      max-width: 980px; margin: 0 auto; padding: 0 22px;
+      height: 48px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 21px; font-weight: 600; color: var(--text-primary);
+      text-decoration: none; letter-spacing: -0.03em;
+    }
     .nav-links { display: flex; gap: 32px; }
-    .nav-links a { font-size: 12px; color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
+    .nav-links a {
+      font-size: 12px; color: var(--text-secondary);
+      text-decoration: none; transition: color 0.3s ease;
+    }
     .nav-links a:hover { color: var(--text-primary); }
     .nav-links a.active { color: var(--text-primary); font-weight: 600; }
-    @media (max-width: 734px) { .nav-links { display: none; } }
+
+    /* ── Hamburger Button ────────────────────── */
+    .nav-hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 36px; height: 36px; position: relative;
+      border-radius: 8px; transition: background 0.2s ease;
+    }
+    .nav-hamburger:hover { background: rgba(255,255,255,0.08); }
+    .nav-hamburger span {
+      display: block; width: 18px; height: 1.5px;
+      background: var(--text-secondary); border-radius: 2px;
+      position: absolute; left: 50%; transform: translateX(-50%);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-hamburger span:nth-child(1) { top: 12px; }
+    .nav-hamburger span:nth-child(2) { top: 17px; }
+    .nav-hamburger span:nth-child(3) { top: 22px; }
+    .nav-hamburger.open span:nth-child(1) { top: 17px; transform: translateX(-50%) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { top: 17px; transform: translateX(-50%) rotate(-45deg); }
+
+    /* ── Mobile Menu ─────────────────────────── */
+    .mobile-menu {
+      display: none; position: fixed; top: 76px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 32px); max-width: 980px; z-index: 99;
+      backdrop-filter: saturate(180%) blur(40px);
+      -webkit-backdrop-filter: saturate(180%) blur(40px);
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.07) 100%);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 20px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+      padding: 12px 0;
+      opacity: 0; transform: translateX(-50%) translateY(-8px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .mobile-menu.open {
+      display: block; opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+    .mobile-menu a {
+      display: block; padding: 14px 28px; font-size: 15px;
+      color: var(--text-secondary); text-decoration: none;
+      transition: all 0.2s ease; font-weight: 400;
+    }
+    .mobile-menu a:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+    .mobile-menu a.active { color: var(--text-primary); font-weight: 600; }
+    .mobile-menu-divider {
+      height: 1px; background: rgba(255,255,255,0.08);
+      margin: 4px 24px;
+    }
+
+    @media (max-width: 734px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+    }
 
     /* ── Blog Hero ────────────────────────────── */
     .blog-hero {
@@ -192,14 +256,31 @@
   <!-- Nav -->
   <nav>
     <div class="nav-content">
-      <a href="#" class="nav-logo">Rajve</a>
+      <a href="/" class="nav-logo">Rajve</a>
       <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#" class="active">Blog</a>
+        <a href="/#capabilities">Capabilities</a>
+        <a href="/#work">Work</a>
+        <a href="/#press">Press</a>
+        <a href="/#education">Education</a>
+        <a href="/blog" class="active">Blog</a>
         <a href="mailto:contact@rajve.com">Contact</a>
       </div>
+      <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/#capabilities" onclick="closeMenu()">Capabilities</a>
+    <a href="/#work" onclick="closeMenu()">Work</a>
+    <a href="/#press" onclick="closeMenu()">Press</a>
+    <a href="/#education" onclick="closeMenu()">Education</a>
+    <div class="mobile-menu-divider"></div>
+    <a href="/blog" class="active" onclick="closeMenu()">Blog</a>
+    <a href="mailto:contact@rajve.com" onclick="closeMenu()">Contact</a>
+  </div>
 
   <!-- Blog Hero -->
   <section class="blog-hero" id="blog-hero">
@@ -306,6 +387,27 @@
   </footer>
 
   <script>
+    /* ── Mobile Menu ─────────────────────────── */
+    function toggleMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('mobile-menu');
+      hamburger.classList.toggle('open');
+      menu.classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('mobile-menu').classList.remove('open');
+    }
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      const menu = document.getElementById('mobile-menu');
+      const hamburger = document.getElementById('hamburger');
+      if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    /* ── Post Open / Close ───────────────────── */
     function openPost(id) {
       document.getElementById('posts-list').classList.add('hidden');
       document.getElementById(id).classList.add('active');
