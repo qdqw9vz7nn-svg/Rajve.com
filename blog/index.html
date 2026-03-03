@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Rajve Shah</title>
+  <style>
+    :root {
+      --text-primary: #f5f5f7;
+      --text-secondary: #a1a1a6;
+      --text-tertiary: #86868b;
+      --bg-primary: #000000;
+      --bg-secondary: #111111;
+      --bg-elevated: #1c1c1e;
+      --border-color: #38383a;
+      --accent-blue: #2997ff;
+      --accent-blue-hover: #40a9ff;
+      --gradient-start: #2997ff;
+      --gradient-end: #af52de;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.47059;
+      font-weight: 400;
+      letter-spacing: -0.022em;
+    }
+
+    /* ── Nav ─────────────────────────────────── */
+    nav {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 32px); max-width: 980px; z-index: 100;
+      backdrop-filter: saturate(180%) blur(40px);
+      -webkit-backdrop-filter: saturate(180%) blur(40px);
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0.06) 100%);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .nav-content { max-width: 980px; margin: 0 auto; padding: 0 22px; height: 48px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-size: 21px; font-weight: 600; color: var(--text-primary); text-decoration: none; letter-spacing: -0.03em; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { font-size: 12px; color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--text-primary); font-weight: 600; }
+    @media (max-width: 734px) { .nav-links { display: none; } }
+
+    /* ── Blog Hero ────────────────────────────── */
+    .blog-hero {
+      padding: 140px 24px 60px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    }
+    .blog-hero-eyebrow {
+      font-size: 14px; font-weight: 600; color: var(--accent-blue);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px;
+    }
+    .blog-hero-title {
+      font-size: clamp(40px, 7vw, 64px); font-weight: 700;
+      letter-spacing: -0.04em; line-height: 1.08; max-width: 780px; margin: 0 auto;
+    }
+    .blog-hero-title .gradient {
+      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .blog-hero-sub {
+      margin-top: 20px; font-size: 21px; color: var(--text-secondary);
+      max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.4;
+    }
+
+    /* ── Post List ────────────────────────────── */
+    .posts-section { padding: 40px 24px 100px; }
+    .posts-wrapper { max-width: 780px; margin: 0 auto; }
+
+    .post-card {
+      display: flex; gap: 28px; align-items: flex-start;
+      background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+      border-radius: 24px; padding: 32px; margin-bottom: 32px;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer; text-decoration: none; color: inherit;
+    }
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.12);
+    }
+    .post-thumb {
+      flex-shrink: 0; width: 180px; height: 180px; border-radius: 16px;
+      overflow: hidden; background: var(--bg-elevated);
+    }
+    .post-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .post-body { flex: 1; min-width: 0; }
+    .post-date { font-size: 12px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
+    .post-title { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.25; }
+    .post-excerpt { font-size: 15px; color: var(--text-secondary); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .post-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .post-tag {
+      font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 980px;
+      background: rgba(41, 151, 255, 0.12); color: var(--accent-blue);
+      letter-spacing: 0.02em;
+    }
+    .read-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 14px; color: var(--accent-blue); margin-top: 14px; font-weight: 500;
+    }
+    .read-link svg { width: 14px; height: 14px; transition: transform 0.3s ease; }
+    .post-card:hover .read-link svg { transform: translateX(4px); }
+
+    @media (max-width: 734px) {
+      .post-card { flex-direction: column; gap: 20px; }
+      .post-thumb { width: 100%; height: 200px; }
+    }
+
+    /* ── Full Post View ──────────────────────── */
+    .post-full { display: none; }
+    .post-full.active { display: block; }
+    .posts-list.hidden { display: none; }
+    .blog-hero.hidden-title .blog-hero-title,
+    .blog-hero.hidden-title .blog-hero-sub { display: none; }
+
+    .post-full-wrapper {
+      max-width: 720px; margin: 0 auto; padding: 0 24px 100px;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; color: var(--accent-blue); text-decoration: none;
+      margin-bottom: 32px; cursor: pointer; transition: all 0.3s ease;
+    }
+    .back-btn:hover { gap: 10px; }
+    .back-btn svg { width: 14px; height: 14px; }
+
+    .post-full-hero-img {
+      width: 100%; border-radius: 20px; overflow: hidden; margin-bottom: 40px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .post-full-hero-img img { width: 100%; display: block; }
+
+    .post-full-date {
+      font-size: 13px; color: var(--text-tertiary); text-transform: uppercase;
+      letter-spacing: 0.04em; margin-bottom: 12px;
+    }
+    .post-full-title {
+      font-size: clamp(32px, 5vw, 48px); font-weight: 700;
+      letter-spacing: -0.035em; line-height: 1.1; margin-bottom: 32px;
+    }
+    .post-full-content { font-size: 18px; color: var(--text-secondary); line-height: 1.72; }
+    .post-full-content p { margin-bottom: 24px; }
+    .post-full-content .lead {
+      font-size: 22px; color: var(--text-primary); font-weight: 500; line-height: 1.55;
+    }
+    .post-full-content .highlight-block {
+      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+      border-left: 3px solid var(--accent-blue);
+      border-radius: 0 16px 16px 0; padding: 28px 32px; margin: 36px 0;
+    }
+    .post-full-content .highlight-block p { margin-bottom: 12px; }
+    .post-full-content .highlight-block p:last-child { margin-bottom: 0; }
+    .post-full-content .callout {
+      font-size: 26px; font-weight: 600; color: var(--text-primary);
+      letter-spacing: -0.02em; line-height: 1.35; margin: 40px 0;
+      padding-left: 24px;
+      border-left: 3px solid transparent;
+      border-image: linear-gradient(180deg, var(--gradient-start), var(--gradient-end)) 1;
+    }
+    .post-full-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); }
+
+    /* ── Footer ───────────────────────────────── */
+    footer {
+      padding: 48px 24px; background: var(--bg-secondary);
+      text-align: center; border-top: 1px solid var(--border-color);
+    }
+    .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: 14px; color: var(--text-secondary); text-decoration: none; transition: color 0.2s ease; }
+    .footer-links a:hover { color: var(--text-primary); }
+    .footer-copyright { font-size: 12px; color: var(--text-tertiary); }
+
+    /* ── Animations ───────────────────────────── */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-in { animation: fadeInUp 0.8s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .delay-2 { animation-delay: 0.2s; opacity: 0; }
+    .delay-3 { animation-delay: 0.3s; opacity: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-content">
+      <a href="#" class="nav-logo">Rajve</a>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#" class="active">Blog</a>
+        <a href="mailto:contact@rajve.com">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Blog Hero -->
+  <section class="blog-hero" id="blog-hero">
+    <p class="blog-hero-eyebrow animate-in delay-1">Blog</p>
+    <h1 class="blog-hero-title animate-in delay-2">Thinking out <span class="gradient">loud.</span></h1>
+    <p class="blog-hero-sub animate-in delay-3">On product, membership, retention, and the art of building things people choose — again and again.</p>
+  </section>
+
+  <!-- Post List -->
+  <section class="posts-section">
+    <div class="posts-wrapper posts-list" id="posts-list">
+
+      <!-- Post 1 Card -->
+      <div class="post-card animate-in delay-2" onclick="openPost('post-1')">
+        <div class="post-thumb">
+          <img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=400&h=400&fit=crop&q=80" alt="Fashion accessories flat lay" />
+        </div>
+        <div class="post-body">
+          <p class="post-date">June 2025</p>
+          <h2 class="post-title">The most important product skill I have didn't come from tech.</h2>
+          <p class="post-excerpt">It came from fashion. Fashion design at NIFT. Luxury brand management at SCAD. Early career in luxury. Then e-commerce. Then finally, subscription platforms. Same goal, different medium: design something people choose over and over again.</p>
+          <div class="post-tags">
+            <span class="post-tag">Product Management</span>
+            <span class="post-tag">Membership</span>
+            <span class="post-tag">Design Thinking</span>
+          </div>
+          <span class="read-link">Read post <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </div>
+
+      <!-- Placeholder: Future Post 2 -->
+      <div class="post-card animate-in delay-3" style="opacity: 0.45; pointer-events: none;">
+        <div class="post-thumb" style="background: linear-gradient(135deg, rgba(175,82,222,0.15), rgba(41,151,255,0.1));"></div>
+        <div class="post-body">
+          <p class="post-date">Coming soon</p>
+          <h2 class="post-title">More thoughts on the way…</h2>
+          <p class="post-excerpt">Stay tuned for upcoming posts on retention systems, growth platforms, and the intersection of brand and product.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Full Post: Post 1 -->
+    <div class="post-full" id="post-1">
+      <div class="post-full-wrapper">
+        <a class="back-btn" onclick="closePost()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          All posts
+        </a>
+
+        <div class="post-full-hero-img">
+          <img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1200&h=500&fit=crop&q=80" alt="Fashion accessories" />
+        </div>
+
+        <p class="post-full-date">June 2025</p>
+        <h1 class="post-full-title">The most important product skill I have didn't come from tech.</h1>
+
+        <div class="post-full-content">
+          <p class="lead">It came from fashion.</p>
+
+          <p>Fashion design at NIFT. Luxury brand management at SCAD. Early career in luxury. Then e-commerce. Then finally, subscription platforms.</p>
+
+          <p class="callout">Same goal, different medium: design something people choose over and over again.</p>
+
+          <p>People hear that and assume it's a detour before the "real" career started. But it's the opposite. It's the foundation.</p>
+
+          <p>Luxury brands are the original subscription businesses. They don't sell products — they sell ongoing relationships. The repeat customer isn't someone who liked the jacket. It's someone who sees themselves in the brand.</p>
+
+          <p>That's exactly the problem every membership platform is solving right now. They're all asking the same question fashion answered decades ago: <strong>how do you make someone feel like they belong — not just like they're getting a deal?</strong></p>
+
+          <div class="highlight-block">
+            <p><strong>Three things fashion taught me that I use every day in subscription product work:</strong></p>
+            <p>🔸 <strong>Curation over volume:</strong> Winning isn't stacking benefits. It's choosing the few that reinforce the promise and saying no to the rest.</p>
+            <p>🔸 <strong>Every touchpoint is the brand:</strong> Onboarding, renewal, billing, price changes, support — these "quiet moments" ARE the membership.</p>
+            <p>🔸 <strong>Aspiration drives loyalty:</strong> People don't just stay for features. They stay for the version of themselves a membership reflects back.</p>
+          </div>
+
+          <p>I build membership products now. But I think like a brand designer. And the real question is never "what should we add?"</p>
+
+          <p class="callout">It's "what are we making people feel?"</p>
+
+          <p>That instinct didn't come from a PM bootcamp. It came from a pattern-cutting table.</p>
+
+          <p><strong>And it's the biggest competitive advantage I have.</strong></p>
+        </div>
+
+        <div class="post-full-tags">
+          <span class="post-tag">#ProductManagement</span>
+          <span class="post-tag">#SubscriptionEconomy</span>
+          <span class="post-tag">#Membership</span>
+          <span class="post-tag">#DesignThinking</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="mailto:contact@rajve.com">Email</a>
+      <a href="https://www.linkedin.com/in/rajvemehhta/" target="_blank">LinkedIn</a>
+    </div>
+    <p class="footer-copyright">© 2025 Rajve Shah. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function openPost(id) {
+      document.getElementById('posts-list').classList.add('hidden');
+      document.getElementById(id).classList.add('active');
+      document.getElementById('blog-hero').classList.add('hidden-title');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function closePost() {
+      document.querySelectorAll('.post-full').forEach(p => p.classList.remove('active'));
+      document.getElementById('posts-list').classList.remove('hidden');
+      document.getElementById('blog-hero').classList.remove('hidden-title');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
