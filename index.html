@@ -57,7 +57,55 @@
     .nav-links { display: flex; gap: 32px; }
     .nav-links a { font-size: 12px; color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
     .nav-links a:hover { color: var(--text-primary); }
-    @media (max-width: 734px) { .nav-links { display: none; } }
+    @media (max-width: 734px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+    }
+    .nav-hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 36px; height: 36px; position: relative;
+      border-radius: 8px; transition: background 0.2s ease;
+    }
+    .nav-hamburger:hover { background: rgba(255,255,255,0.08); }
+    .nav-hamburger span {
+      display: block; width: 18px; height: 1.5px;
+      background: var(--text-secondary); border-radius: 2px;
+      position: absolute; left: 50%; transform: translateX(-50%);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-hamburger span:nth-child(1) { top: 12px; }
+    .nav-hamburger span:nth-child(2) { top: 17px; }
+    .nav-hamburger span:nth-child(3) { top: 22px; }
+    .nav-hamburger.open span:nth-child(1) { top: 17px; transform: translateX(-50%) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { top: 17px; transform: translateX(-50%) rotate(-45deg); }
+    .mobile-menu {
+      display: none; position: fixed; top: 76px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 32px); max-width: 980px; z-index: 99;
+      backdrop-filter: saturate(180%) blur(40px);
+      -webkit-backdrop-filter: saturate(180%) blur(40px);
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.07) 100%);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 20px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+      padding: 12px 0;
+      opacity: 0; transform: translateX(-50%) translateY(-8px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .mobile-menu.open {
+      display: block; opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+    .mobile-menu a {
+      display: block; padding: 14px 28px; font-size: 15px;
+      color: var(--text-secondary); text-decoration: none;
+      transition: all 0.2s ease; font-weight: 400;
+    }
+    .mobile-menu a:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+    .mobile-menu-divider {
+      height: 1px; background: rgba(255,255,255,0.08); margin: 4px 24px;
+    }
     .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 24px 80px; background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%); }
     .hero-title { font-size: clamp(48px, 10vw, 96px); font-weight: 700; letter-spacing: -0.045em; line-height: 1.05; max-width: 900px; }
     .hero-title .gradient { background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end)); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -157,7 +205,8 @@
   </style>
 </head>
 <body>
-  <nav><div class="nav-content"><a href="#" class="nav-logo">Rajve</a><div class="nav-links"><a href="#capabilities">Capabilities</a><a href="#work">Work</a><a href="#press">Press</a><a href="#education">Education</a><a href="/blog">Blog</a><a href="mailto:contact@rajve.com">Contact</a></div></div></nav>
+  <nav><div class="nav-content"><a href="#top" class="nav-logo">Rajve</a><div class="nav-links"><a href="#capabilities">Capabilities</a><a href="#work">Work</a><a href="#press">Press</a><a href="#education">Education</a><a href="/blog">Blog</a><a href="mailto:contact@rajve.com">Contact</a></div><button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu"><span></span><span></span><span></span></button></div></nav>
+  <div class="mobile-menu" id="mobile-menu"><a href="#capabilities" onclick="closeMenu()">Capabilities</a><a href="#work" onclick="closeMenu()">Work</a><a href="#press" onclick="closeMenu()">Press</a><a href="#education" onclick="closeMenu()">Education</a><div class="mobile-menu-divider"></div><a href="/blog" onclick="closeMenu()">Blog</a><a href="mailto:contact@rajve.com" onclick="closeMenu()">Contact</a></div>
   <section class="hero" id="top">
     <h1 class="hero-title animate-in delay-1">Build. Ship.<br><span class="gradient">Scale.</span></h1>
     <p class="hero-intro animate-in delay-2">Hi! I am <span class="name-accent">Rajve</span>.</p>
@@ -173,6 +222,19 @@
   <section class="section section-alt" id="education"><div class="section-content"><div class="section-header"><p class="section-eyebrow">Education</p><h2 class="section-title">Foundation.</h2></div><div class="education-grid"><div class="education-card"><div><p class="education-school">Savannah College of Art and Design</p><h3 class="education-degree">M.A., Luxury Brand Management</h3><p class="education-detail">4.0 GPA</p><a href="https://www.behance.net/rajve?locale=en_US" class="btn-secondary" target="_blank" style="padding: 0;">View Portfolio<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div><div class="education-logo">SCAD</div></div><div class="education-card"><div><p class="education-school">National Institute of Fashion Technology, India</p><h3 class="education-degree">Bachelor of Design</h3><p class="education-detail">Graduated top of class</p></div><div class="education-logo">NIFT</div></div></div></div></section>
   <footer><div class="footer-links"><a href="mailto:contact@rajve.com">Email</a><a href="https://www.linkedin.com/in/rajvemehhta/" target="_blank">LinkedIn</a></div><p class="footer-copyright">© 2025 Rajve Shah. All rights reserved.</p></footer>
   <script>
+    function toggleMenu() {
+      document.getElementById('hamburger').classList.toggle('open');
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('mobile-menu').classList.remove('open');
+    }
+    document.addEventListener('click', function(e) {
+      var menu = document.getElementById('mobile-menu');
+      var hamburger = document.getElementById('hamburger');
+      if (!menu.contains(e.target) && !hamburger.contains(e.target)) { closeMenu(); }
+    });
     function speakName() { if (!window.speechSynthesis) return; window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance('raaj vee'); u.rate = 0.9; u.pitch = 1.0; window.speechSynthesis.speak(u); }
     const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.capability-card, .work-item, .press-card, .education-card').forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; observer.observe(el); });
