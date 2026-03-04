@@ -258,10 +258,7 @@
     <div class="nav-content">
       <a href="/" class="nav-logo">Rajve</a>
       <div class="nav-links">
-        <a href="/#capabilities">Capabilities</a>
-        <a href="/#work">Work</a>
-        <a href="/#press">Press</a>
-        <a href="/#education">Education</a>
+        <a href="/">Home</a>
         <a href="/blog" class="active">Blog</a>
         <a href="mailto:contact@rajve.com">Contact</a>
       </div>
@@ -273,11 +270,7 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="/#capabilities" onclick="closeMenu()">Capabilities</a>
-    <a href="/#work" onclick="closeMenu()">Work</a>
-    <a href="/#press" onclick="closeMenu()">Press</a>
-    <a href="/#education" onclick="closeMenu()">Education</a>
-    <div class="mobile-menu-divider"></div>
+    <a href="/" onclick="closeMenu()">Home</a>
     <a href="/blog" class="active" onclick="closeMenu()">Blog</a>
     <a href="mailto:contact@rajve.com" onclick="closeMenu()">Contact</a>
   </div>
@@ -311,13 +304,57 @@
         </div>
       </div>
 
-      <!-- Placeholder: Future Post 2 -->
-      <div class="post-card animate-in delay-3" style="opacity: 0.45; pointer-events: none;">
-        <div class="post-thumb" style="background: linear-gradient(135deg, rgba(175,82,222,0.15), rgba(41,151,255,0.1));"></div>
+      <!-- Post 2 Card -->
+      <div class="post-card animate-in delay-3" onclick="openPost('post-2')">
+        <div class="post-thumb">
+          <img src="./post-2-hero.svg" alt="Revenue growth spectrum visualization" />
+        </div>
         <div class="post-body">
-          <p class="post-date">Coming soon</p>
-          <h2 class="post-title">More thoughts on the way…</h2>
-          <p class="post-excerpt">Stay tuned for upcoming posts on retention systems, growth platforms, and the intersection of brand and product.</p>
+          <p class="post-date">July 2025</p>
+          <h2 class="post-title">The Netflix Paradox: how killing password sharing added 50 million subscribers.</h2>
+          <p class="post-excerpt">Netflix didn't just enforce a policy. They executed one of the most sophisticated monetization pivots in subscription history — turning freeloading households into a revenue engine.</p>
+          <div class="post-tags">
+            <span class="post-tag">Subscription Strategy</span>
+            <span class="post-tag">Growth</span>
+            <span class="post-tag">Monetization</span>
+          </div>
+          <span class="read-link">Read post <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </div>
+
+      <!-- Post 3 Card -->
+      <div class="post-card animate-in delay-3" onclick="openPost('post-3')">
+        <div class="post-thumb">
+          <img src="./post-3-hero.svg" alt="Year-two cliff growth curve visualization" />
+        </div>
+        <div class="post-body">
+          <p class="post-date">August 2025</p>
+          <h2 class="post-title">The Year-Two Cliff: where most subscription products go to die.</h2>
+          <p class="post-excerpt">Year 1 is exciting. You're acquiring. The growth curve is intoxicating. Year 2 is when the bill comes due — and you realize you never built the infrastructure for the boring middle.</p>
+          <div class="post-tags">
+            <span class="post-tag">Churn Prevention</span>
+            <span class="post-tag">Retention</span>
+            <span class="post-tag">Subscription Economy</span>
+          </div>
+          <span class="read-link">Read post <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </div>
+
+      <!-- Post 4 Card -->
+      <div class="post-card animate-in delay-3" onclick="openPost('post-4')">
+        <div class="post-thumb">
+          <img src="./post-4-hero.svg" alt="Trust and safety shield with platform integrity flow" />
+        </div>
+        <div class="post-body">
+          <p class="post-date">September 2025</p>
+          <h2 class="post-title">Trust & Safety is not a cost center. It's your highest-leverage growth lever.</h2>
+          <p class="post-excerpt">If your Trust & Safety team reports to Legal or Compliance, you're leaving money on the table. T&S is a product discipline — and in subscription businesses, it protects the engine that drives retention.</p>
+          <div class="post-tags">
+            <span class="post-tag">Trust & Safety</span>
+            <span class="post-tag">Platform Strategy</span>
+            <span class="post-tag">Leadership</span>
+          </div>
+          <span class="read-link">Read post <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
       </div>
 
@@ -375,6 +412,171 @@
         </div>
       </div>
     </div>
+    <!-- Full Post: Post 2 — The Netflix Paradox -->
+    <div class="post-full" id="post-2">
+      <div class="post-full-wrapper">
+        <a class="back-btn" onclick="closePost()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          All posts
+        </a>
+
+        <div class="post-full-hero-img">
+          <img src="./post-2-hero.svg" alt="Revenue growth spectrum visualization" />
+        </div>
+
+        <p class="post-full-date">July 2025</p>
+        <h1 class="post-full-title">The Netflix Paradox: how killing password sharing added 50 million subscribers.</h1>
+
+        <div class="post-full-content">
+          <p class="lead">In 2017, Netflix tweeted: "Love is sharing a password." In 2023, they killed it. And added 50 million paying subscribers.</p>
+
+          <p>Netflix didn't just "enforce a policy." They executed one of the most sophisticated monetization pivots in subscription history — turning 100 million freeloading households into a revenue engine.</p>
+
+          <p class="callout">But the real masterclass wasn't the crackdown. It was the architecture around it.</p>
+
+          <p>They launched an ad-supported tier at $6.99 simultaneously — giving displaced users a softer landing instead of a hard wall. They introduced "Extra Member" slots at $7.99/month — creating an entirely new mid-tier revenue stream that didn't exist before.</p>
+
+          <p>The result? Daily sign-ups surged 102%. Revenue hit $39 billion in 2024.</p>
+
+          <div class="highlight-block">
+            <p><strong>The Churn Conversion Spectrum</strong></p>
+            <p>Not every "lost" user is actually lost. Some are sitting in a gray zone between free access and willingness to pay. Your job as a subscription PM isn't to slam the door. It's to build the hallway.</p>
+          </div>
+
+          <p>Spotify understood this years ago with their freemium funnel — let users experience value for free, then create enough friction (ads, shuffle-only) that upgrading feels like relief, not punishment.</p>
+
+          <p>Duolingo took it further. Their streak mechanic isn't a retention feature. It's a sunk-cost engine. Miss a day and you feel the loss. That's not gamification — that's behavioral architecture.</p>
+
+          <p>Adobe made a similar bet when they killed perpetual licenses for Creative Cloud. The industry screamed. Revenue tripled over the next decade.</p>
+
+          <p class="callout">The pattern is the same every time: short-term backlash, long-term structural advantage.</p>
+
+          <p>Every subscription business has a version of this dormant revenue sitting in its ecosystem. The question isn't whether to capture it. It's whether you've built the product architecture to convert it without destroying trust.</p>
+        </div>
+
+        <div class="post-full-tags">
+          <span class="post-tag">#SubscriptionStrategy</span>
+          <span class="post-tag">#Growth</span>
+          <span class="post-tag">#Netflix</span>
+          <span class="post-tag">#Monetization</span>
+          <span class="post-tag">#RetentionStrategy</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full Post: Post 3 — The Year-Two Cliff -->
+    <div class="post-full" id="post-3">
+      <div class="post-full-wrapper">
+        <a class="back-btn" onclick="closePost()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          All posts
+        </a>
+
+        <div class="post-full-hero-img">
+          <img src="./post-3-hero.svg" alt="Year-two cliff growth curve visualization" />
+        </div>
+
+        <p class="post-full-date">August 2025</p>
+        <h1 class="post-full-title">The Year-Two Cliff: where most subscription products go to die.</h1>
+
+        <div class="post-full-content">
+          <p class="lead">Most subscription products don't die in Year 1. They die in Year 2.</p>
+
+          <p>Year 1 is exciting. You're acquiring. The growth curve is intoxicating. Metrics are going up and to the right. Everyone's celebrating.</p>
+
+          <p class="callout">Year 2 is when the bill comes due.</p>
+
+          <p>Your early adopters start churning. Your CAC creeps up because you've exhausted the easy audiences. And suddenly you realize you never built the infrastructure for the boring middle — the payments that fail silently, the renewals that lapse without a fight, the members who ghost without ever telling you why.</p>
+
+          <div class="highlight-block">
+            <p><strong>Companies that fell off the cliff:</strong></p>
+            <p>🔸 <strong>Peloton</strong> nailed the Year 1 story. Hardware + subscription bundling during COVID was brilliant. But when the novelty wore off, they had no retention infrastructure to catch the fall. The stock cratered 95% from its peak.</p>
+            <p>🔸 <strong>Quibi</strong> raised $1.75 billion and lasted 6 months. They optimized entirely for acquisition and built zero retention mechanics. No community. No habit loops. No reason to come back tomorrow.</p>
+          </div>
+
+          <p>Now compare that with the companies that invested in the boring middle early:</p>
+
+          <p>Spotify doesn't just play music. Wrapped is a masterpiece of annual re-engagement. Discover Weekly creates a recurring reason to return. Their churn rate sits around 4-5% monthly — extraordinary for a consumer subscription.</p>
+
+          <p>Strava built an entire social graph around suffering. Their segment leaderboards turned solo runs into community competition. The conversion isn't about features — it's about belonging.</p>
+
+          <p>The New York Times went from print to 10 million digital subscribers by treating journalism as a product. Cooking. Games. Wirecutter. The Athletic. They built a portfolio of daily habits, not a single subscription.</p>
+
+          <p class="callout">The companies that survive Year 2 all shifted from "how do we get people in the door" to "how do we make the infrastructure invisible."</p>
+
+          <p>Failed payments recovered automatically. Downgrades offered before cancellations. Engagement nudges timed to behavioral signals, not arbitrary schedules.</p>
+
+          <p>The sexiest subscription product in the world means nothing if your payment retry logic lets 20% of your base churn involuntarily.</p>
+
+          <p><strong>The unsexy work is the work that compounds.</strong></p>
+        </div>
+
+        <div class="post-full-tags">
+          <span class="post-tag">#ChurnPrevention</span>
+          <span class="post-tag">#SubscriptionEconomy</span>
+          <span class="post-tag">#Retention</span>
+          <span class="post-tag">#Growth</span>
+          <span class="post-tag">#ProductManagement</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full Post: Post 4 — Trust & Safety -->
+    <div class="post-full" id="post-4">
+      <div class="post-full-wrapper">
+        <a class="back-btn" onclick="closePost()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          All posts
+        </a>
+
+        <div class="post-full-hero-img">
+          <img src="./post-4-hero.svg" alt="Trust and safety shield with platform integrity flow" />
+        </div>
+
+        <p class="post-full-date">September 2025</p>
+        <h1 class="post-full-title">Trust & Safety is not a cost center. It's your highest-leverage growth lever.</h1>
+
+        <div class="post-full-content">
+          <p class="lead">If your Trust & Safety team reports to Legal or Compliance, you're leaving money on the table.</p>
+
+          <p>T&S is a product discipline. And in subscription businesses, it's one of the highest-leverage growth levers you have.</p>
+
+          <p>Every subscription platform has a version of the same problem: bad actors who exploit trials, abuse promotions, or game referral systems. Left unchecked, they don't just cost you money — they degrade the experience for legitimate members and erode the trust that keeps people paying.</p>
+
+          <div class="highlight-block">
+            <p><strong>The pattern across every major platform:</strong></p>
+            <p>🔸 <strong>LinkedIn</strong> — Fake profiles and spam InMails chip away at Premium's value proposition. When members stop trusting the network, they stop paying.</p>
+            <p>🔸 <strong>Spotify</strong> — Bot streams distort royalty payments and pollute Discover Weekly. Worse recommendations mean less engagement. Less engagement means higher churn.</p>
+            <p>🔸 <strong>Airbnb</strong> — Early growth-at-all-costs meant inadequate host vetting and safety incidents. Their Trust team rebuilt the foundation that made the marketplace viable.</p>
+          </div>
+
+          <p class="callout">Trust & Safety → Platform Integrity → User Confidence → Retention → Revenue</p>
+
+          <p>When I think about T&S as a product leader, I frame it in three layers:</p>
+
+          <div class="highlight-block">
+            <p><strong>1. Preventive systems</strong> — ML models that catch abuse before it impacts real users. This is your first line of defense and your highest-ROI investment.</p>
+            <p><strong>2. Responsive systems</strong> — Fast, fair resolution when things go wrong. Speed here directly correlates with whether a member stays or leaves.</p>
+            <p><strong>3. Trust signals</strong> — Visible indicators that the platform is safe. Verified badges, transaction guarantees, transparent policies. These compound over time.</p>
+          </div>
+
+          <p class="callout">The best subscription businesses don't treat T&S as the team that says "no." They treat it as the team that protects "yes."</p>
+
+          <p>If you run a subscription product, ask yourself: does your T&S team have a seat at the product table? Do they have a P&L impact metric? Can they show you the dollar value of abuse they prevented last quarter?</p>
+
+          <p><strong>If not, you have a compliance function. Not a growth lever.</strong></p>
+        </div>
+
+        <div class="post-full-tags">
+          <span class="post-tag">#TrustAndSafety</span>
+          <span class="post-tag">#PlatformStrategy</span>
+          <span class="post-tag">#SubscriptionGrowth</span>
+          <span class="post-tag">#Leadership</span>
+          <span class="post-tag">#ProductManagement</span>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- Footer -->
